@@ -1,0 +1,28 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        maven { url 'https://mirrors.cloud.tencent.com/maven/' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
+        gradlePluginPortal()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://mirrors.cloud.tencent.com/nexus/repository/google-maven/' }
+        mavenCentral()
+        google()
+    }
+}
+
+rootProject.name = "FridaDemo"
+include ':app'
