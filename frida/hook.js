@@ -1,8 +1,9 @@
+// frida -U -f com.mainli.fridademo -l hook.js --pause
 setImmediate(function () {
     Java.perform(function () {
         var MainActivity = Java.use("com.mainli.fridademo.MainActivity");
         console.log("类加载成功");
-        console.log("方法:", Object.getOwnPropertyNames(MainActivity).filter(x => x.startsWith('str')));
+        console.log("方法:", Object.getOwnPropertyNames(MainActivity).filter(x => x.startsWith('onR')));
 
         MainActivity.onCreate.implementation = function (savedInstanceState) {
             printStackTrace("MainActivity.onCreate Stack");
@@ -11,7 +12,7 @@ setImmediate(function () {
 
         var count = 0;
         MainActivity.stringFromJNI.implementation = function () {
-            printStackTrace(`stringFromJNI call ${count}`);
+            printStackTrace(`${ this.stringFromJNI()} -- stringFromJNI call ${count}`);
             return `Hello from Frida -> Count: ${count++}`;
         };
     });

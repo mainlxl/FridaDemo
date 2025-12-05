@@ -12,13 +12,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.sampleText.text = stringFromJNI()
+        binding.sampleText.text = md5("Mainli")
         binding.sampleText.setOnClickListener {
             binding.sampleText.text = stringFromJNI()
         }
     }
 
     external fun stringFromJNI(): String
+    external fun md5(input: String): String
 
     companion object {
         init {
